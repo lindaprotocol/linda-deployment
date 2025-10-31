@@ -2,7 +2,7 @@
 
 # default config
 APP="FullNode"
-PROJECT="java-tron"
+PROJECT="java-linda"
 WORK_SPACE=$PWD
 NET="mainnet"
 BRANCH="master"
@@ -80,16 +80,16 @@ echo 'download code from git repository'
 if [ ! -e $BIN_PATH ]; then
   mkdir -p $BIN_PATH
   cd $BIN_PATH
-  git clone https://github.com/tronprotocol/$PROJECT
+  git clone https://github.com/lindaprotocol/$PROJECT
 fi
 
 cd $BIN_PATH
 if [ $NET == "mainnet" ]; then
-  wget https://raw.githubusercontent.com/tronprotocol/TronDeployment/master/main_net_config.conf -O main_net_config.conf
-  RELEASE=`curl --silent "https://api.github.com/repos/tronprotocol/java-tron/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'`
+  wget https://raw.githubusercontent.com/lindaprotocol/LindaDeployment/master/main_net_config.conf -O main_net_config.conf
+  RELEASE=`curl --silent "https://api.github.com/repos/lindaprotocol/java-linda/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'`
   CONF_PATH=$BIN_PATH/main_net_config.conf
 elif [ $NET == "testnet" ]; then
-  wget https://raw.githubusercontent.com/tronprotocol/TronDeployment/master/test_net_config.conf -O test_net_config.conf
+  wget https://raw.githubusercontent.com/lindaprotocol/LindaDeployment/master/test_net_config.conf -O test_net_config.conf
   CONF_PATH=$BIN_PATH/test_net_config.conf
 fi
 
@@ -137,7 +137,7 @@ while [ $count -le 360 ]; do
   pid=`ps -ef |grep  $JAR_NAME.jar | grep java | grep -v grep |awk '{print $2}'`
   if [ -n "$pid" ]; then
     kill -15 $pid
-    echo "kill -15 java-tron, counter $count"
+    echo "kill -15 java-linda, counter $count"
     sleep 5
   else
     echo "$APP killed"
@@ -166,7 +166,7 @@ fi
 echo "process    : nohup java $JVM_OPT -jar $JAR_NAME.jar $START_OPT -c $CONF_PATH  >> start.log 2>&1 &"
 echo "pid        : $pid"
 echo "application: $APP"
-echo "tron net   : $NET"
+echo "linda net   : $NET"
 echo "deploy path: $BIN_PATH"
 echo "git commit : "`cd $BIN_PATH/$PROJECT; git rev-parse HEAD`
 echo "git branch : $BRANCH"

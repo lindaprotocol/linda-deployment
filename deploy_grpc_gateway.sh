@@ -7,9 +7,9 @@
 port=50051
 host=localhost
 listen=18890
-go get -u github.com/tronprotocol/grpc-gateway
-echo "Download github.com/tronprotocol/grpc-gateway successfully"
-cd $GOPATH/src/github.com/tronprotocol/grpc-gateway
+go get -u github.com/lindaprotocol/grpc-gateway
+echo "Download github.com/lindaprotocol/grpc-gateway successfully"
+cd $GOPATH/src/github.com/lindaprotocol/grpc-gateway
 while [ -n "$1" ] ;do
     case "$1" in
         --rpcport)
@@ -28,7 +28,7 @@ while [ -n "$1" ] ;do
             ;;
     esac
 done
-nohup go run tron_http/main.go -port $port -host $host -listen $listen >> start_grpc_gateway.log 2>&1 &
+nohup go run linda_http/main.go -port $port -host $host -listen $listen >> start_grpc_gateway.log 2>&1 &
 echo "==Activate gateway=="
 echo "grpc server : $host:$port"
 echo "http port: $listen"
