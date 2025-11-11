@@ -85,11 +85,11 @@ fi
 
 cd $BIN_PATH
 if [ $NET == "mainnet" ]; then
-  wget https://raw.githubusercontent.com/lindaprotocol/LindaDeployment/master/main_net_config.conf -O main_net_config.conf
+  wget https://raw.githubusercontent.com/lindaprotocol/linda-deployment/master/main_net_config.conf -O main_net_config.conf
   RELEASE=`curl --silent "https://api.github.com/repos/lindaprotocol/java-linda/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'`
   CONF_PATH=$BIN_PATH/main_net_config.conf
 elif [ $NET == "testnet" ]; then
-  wget https://raw.githubusercontent.com/lindaprotocol/LindaDeployment/master/test_net_config.conf -O test_net_config.conf
+  wget https://raw.githubusercontent.com/lindaprotocol/linda-deployment/master/test_net_config.conf -O test_net_config.conf
   CONF_PATH=$BIN_PATH/test_net_config.conf
 fi
 
